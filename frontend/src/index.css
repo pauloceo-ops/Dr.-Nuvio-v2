@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #E8F0F8;
+}
+
+/* Nuvio gradient accent */
+.nuvio-gradient {
+  background: linear-gradient(135deg, #4ECDC4 0%, #7EFADB 100%);
+}
+
+.nuvio-gradient-text {
+  background: linear-gradient(135deg, #4ECDC4 0%, #7EFADB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nuvio-bg-gradient {
+  background: linear-gradient(135deg, #0A1628 0%, #1B3A5C 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E8F0F8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1B3A5C;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2E86AB;
+}
+
+/* Semáforo ranking */
+.semaforo-vermelho { background-color: #EF4444; }
+.semaforo-amarelo { background-color: #F59E0B; }
+.semaforo-verde { background-color: #10B981; }
