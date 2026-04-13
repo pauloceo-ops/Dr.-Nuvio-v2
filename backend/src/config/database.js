@@ -1,6 +1,7 @@
 const initSqlJs = require('sql.js');
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 const dbPath = path.resolve(__dirname, '../../', process.env.DB_PATH || './database.sqlite');
@@ -238,6 +239,27 @@ async function getDb() {
       prepare('INSERT INTO tarefas (codigo, titulo, descricao, modulo, tipo, status) VALUES (?, ?, ?, ?, ?, ?)')
         .run(t.codigo, t.titulo, t.descricao, t.modulo, t.tipo, 'ativo');
     }
+  }
+
+  // ========================
+  // SEED: Usuário Admin
+  // ========================
+  const adminCount = prepare('SELECT COUNT(*) as count FROM users WHERE email = ?').get('paulo@drnuvio.com')?.count || 0;
+  if (adminCount === 0) {
+    const senhaAdmin = bcrypt.hashSync('Pratika123!', 10);
+    const modulesJson = JSON.stringify(['juridico', 'condominio']);
+
+    prepare(`
+      INSERT INTO users (name, email, password, role, oab, modules)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run(
+      'Paulo Henrique Marques',
+      'paulo@drnuvio.com',
+      senhaAdmin,
+      'admin',
+      'OAB/RN 16.475',
+      modulesJson
+    );
   }
 
   saveDb();

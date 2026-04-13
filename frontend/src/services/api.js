@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+// Em produção usa a URL do Render, localmente usa /api
+const baseURL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : '/api';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL,
 });
 
 // Add token to all requests
